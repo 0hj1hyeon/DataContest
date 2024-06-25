@@ -13,3 +13,9 @@ hi2
 
 
 https://www.2024datacontest.co.kr/
+
+
+Version
+
+Java 17
+Spring Boot 3.2.5
