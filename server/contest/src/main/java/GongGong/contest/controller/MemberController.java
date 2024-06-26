@@ -24,6 +24,7 @@ public class MemberController {
         System.out.println("member.getMemberId() = " + member.getMemberId());
         System.out.println("member.getMemberPassword() = " + member.getMemberPassword());
      
+        
         boolean b = memberService.joinMember(member);
         
         if (!b) {

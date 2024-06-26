@@ -14,6 +14,7 @@ public class MemberService {
     
     public boolean joinMember(Member member) {
         
+        
         /**
          * 회원가입 로직 작성
          * 중복 id 있는지 검사해서 true false 반환
