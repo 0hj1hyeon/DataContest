@@ -1,4 +1,4 @@
-package com.example.datacontestapp;
+package com.example.contest;
 
 import org.junit.Test;
 
