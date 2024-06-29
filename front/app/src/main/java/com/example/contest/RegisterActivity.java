@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.model.User;
+import com.example.model.Member;
 import com.example.retrofit.RetrofitClient;
 import com.example.service.ApiService;
 
@@ -47,9 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String id, String pw) {
-        User user = new User(id, pw);
+        Member member = new Member(id, pw);
 
-        apiService.registerUser(user).enqueue(new Callback<Void>() {
+        apiService.registerUser(member).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
