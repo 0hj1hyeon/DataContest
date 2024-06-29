@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DataContestApp"
+rootProject.name = "Contest"
 include ':app'
