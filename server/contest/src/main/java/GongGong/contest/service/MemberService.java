@@ -6,6 +6,8 @@ import GongGong.contest.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -14,14 +16,33 @@ public class MemberService {
     
     public boolean joinMember(Member member) {
         
-        
         /**
          * 회원가입 로직 작성
          * 중복 id 있는지 검사해서 true false 반환
          */
         
+        Optional<Member> findMember = memberRepository.findById(member.getMemberId());
+        //null 인지 검사
+        if (findMember.isPresent()) {
+            return false;
+        } 
+        
+        memberRepository.save(member);
         return true;
     }
     
+    public boolean loginMember(Member member) {
+        
+        Member foundMember = memberRepository.findById(member.getMemberId()).orElse(null);
+        
+        if (foundMember.getMemberPassword().equals(member.getMemberPassword())) {
+            return true;
+        }
+        
+        return false;
+    }
     
+    public boolean findMember(String memberId) {
+        return memberRepository.existsById(memberId);
+    }
 }

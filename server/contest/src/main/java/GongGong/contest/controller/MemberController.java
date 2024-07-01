@@ -24,15 +24,41 @@ public class MemberController {
         System.out.println("member.getMemberId() = " + member.getMemberId());
         System.out.println("member.getMemberPassword() = " + member.getMemberPassword());
      
+        boolean is_join = memberService.joinMember(member);
         
-        boolean b = memberService.joinMember(member);
-        
-        if (!b) {
-            return new ResponseEntity<>("안되용", HttpStatus.BAD_REQUEST);
+        if (!is_join) {
+            System.out.println("아이디 중복");
+            return new ResponseEntity<>("아이디 중복", HttpStatus.BAD_REQUEST);
         }
         
-        return new ResponseEntity<>("okzz", HttpStatus.OK);
+        System.out.println("회원가입 성공");
+        return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
     }
+    
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Member member) {
+        System.out.println("member.getMemberId() = " + member.getMemberId());
+        System.out.println("member.getMemberPassword() = " + member.getMemberPassword());
+        
+        
+        boolean isFind = memberService.findMember(member.getMemberId());
+        if (!isFind) {
+            System.out.println("존재하지 않는 아이디");
+            return new ResponseEntity<>("존재하지 않는 아이디", HttpStatus.BAD_REQUEST);
+        }
+        
+        
+        boolean isLogin = memberService.loginMember(member);
+        if (!isLogin) {
+            System.out.println("비밀번호 불일치");
+            return new ResponseEntity<>("비밀번호 불일치", HttpStatus.BAD_REQUEST);
+        }
+        
+        
+        System.out.println("로그인 성공");
+        return new ResponseEntity<>("로그인 성공", HttpStatus.OK);
+    }
+    
 }
 
 
