@@ -31,4 +31,18 @@ public class MemberService {
         return true;
     }
     
+    public boolean loginMember(Member member) {
+        
+        Member foundMember = memberRepository.findById(member.getMemberId()).orElse(null);
+        
+        if (foundMember.getMemberPassword().equals(member.getMemberPassword())) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public boolean findMember(String memberId) {
+        return memberRepository.existsById(memberId);
+    }
 }
