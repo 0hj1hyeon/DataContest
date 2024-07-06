@@ -9,4 +9,7 @@ import retrofit2.http.POST;
 public interface ApiService {
     @POST("/join")
     Call<Void> registerUser(@Body Member member);
+
+    @POST("/login")
+    Call<Void> loginUser(@Body Member member);
 }
