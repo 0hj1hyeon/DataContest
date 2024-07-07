@@ -1,5 +1,6 @@
 package com.example.contest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,6 +56,11 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Log.d("RegisterActivity", "회원가입 성공");
                     Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+
+                    // MainActivity로 이동
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     String errorMessage = "회원가입 실패: " + response.message();
                     Log.e("RegisterActivity", errorMessage);
