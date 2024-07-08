@@ -13,8 +13,8 @@ import lombok.Setter;
 public class Member {
     
     @Id
-    String MemberId;
+    String id;
     
-    String MemberPassword;
+    String password;
     
 }

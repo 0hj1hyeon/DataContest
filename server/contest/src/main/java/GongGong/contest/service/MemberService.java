@@ -21,7 +21,7 @@ public class MemberService {
          * 중복 id 있는지 검사해서 true false 반환
          */
         
-        Optional<Member> findMember = memberRepository.findById(member.getMemberId());
+        Optional<Member> findMember = memberRepository.findById(member.getId());
         //null 인지 검사
         if (findMember.isPresent()) {
             return false;
@@ -33,9 +33,9 @@ public class MemberService {
     
     public boolean loginMember(Member member) {
         
-        Member foundMember = memberRepository.findById(member.getMemberId()).orElse(null);
+        Member foundMember = memberRepository.findById(member.getId()).orElse(null);
         
-        if (foundMember.getMemberPassword().equals(member.getMemberPassword())) {
+        if (foundMember.getPassword().equals(member.getPassword())) {
             return true;
         }
         
