@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.kakaomaptest.MapActivity;
 import com.example.model.Member;
 import com.example.retrofit.RetrofitClient;
 import com.example.service.ApiService;
@@ -42,7 +43,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String id = etId.getText().toString();
                 String pw = etPw.getText().toString();
-                loginUser(id,pw);
+                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                startActivity(intent);
+                //loginUser(id,pw);
             }
         });
     }
