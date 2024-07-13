@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,24 +16,37 @@ import com.example.model.Member;
 import com.example.retrofit.RetrofitClient;
 import com.example.service.ApiService;
 
+import java.math.BigInteger;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class RegisterActivity extends AppCompatActivity {
+    public Member member;
 
-    private EditText etId, etPw;
+    private EditText etId, etPw, etName, etAge, etEmail, etCall, etAddress, etIntro;
+    private RadioGroup rgGender;
+    private CheckBox cbDis;
     private Button btnRegister;
     private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.account_register);
 
         etId = findViewById(R.id.et_register_id);
         etPw = findViewById(R.id.et_register_pw);
+        etName = findViewById(R.id.et_register_name);
+        rgGender = findViewById(R.id.et_register_gender);
+        etAge = findViewById(R.id.et_register_age);
+        etEmail = findViewById(R.id.et_register_email);
+        etCall = findViewById(R.id.et_register_call);
+        etAddress = findViewById(R.id.et_register_address);
+        etIntro = findViewById(R.id.et_register_intro);
+        cbDis = findViewById(R.id.et_register_disabled);
         btnRegister = findViewById(R.id.btn_register);
 
         Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080");
@@ -40,16 +55,34 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = etId.getText().toString();
-                String pw = etPw.getText().toString();
-                registerUser(id, pw);
+                String gender;
+                long isDis;
+
+                if(rgGender.getCheckedRadioButtonId() == 0) gender = "남성";
+                else if (rgGender.getCheckedRadioButtonId() == 1) gender = "여성";
+                else gender = "기타";
+
+                if(cbDis.isChecked()) isDis = 1;
+                else isDis = 0;
+
+                member = new Member(
+                        etId.getText().toString(),
+                        etPw.getText().toString(),
+                        etName.getText().toString(),
+                        gender,
+                        Integer.parseInt(etAge.getText().toString()),
+                        etEmail.getText().toString(),
+                        etCall.getText().toString(),
+                        etAddress.getText().toString(),
+                        getTextAsLines(etIntro),
+                        isDis);
+
+                registerUser(member);
             }
         });
     }
 
-    private void registerUser(String id, String pw) {
-        Member member = new Member(id, pw);
-
+    private void registerUser(Member member) {
         apiService.registerUser(member).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -75,5 +108,10 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(RegisterActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private String[] getTextAsLines(EditText editText) {
+        String text = editText.getText().toString();
+        return text.split("\\r?\\n");
     }
 }
