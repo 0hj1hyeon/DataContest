@@ -1,36 +1,34 @@
 package com.example.model;
 
-import java.math.BigInteger;
-
 public class Member {
-    private String memberId;
-    private String memberPassword;
-    private String memberName;
-    private String memberGender;
-    private int memberAge;
-    private String memberEmail;
-    private String memberCall;
-    private String memberAddress;
-    private String[] memberIntro;
-    private long memeberDisabled_id;
+    private String id;
+    private String password;
+    private String name;
+    private String gender;
+    private int age;
+    private String email;
+    private String call_info;
+    private String address;
+    private String intro;
+    private long disabled_id;
 
-    public Member(String memberId, String memberPassword) {
-        this.memberId = memberId;
-        this.memberPassword = memberPassword;
+    public Member(String id, String memberPassword) {
+        this.id = id;
+        this.password = memberPassword;
     }
 
-    public Member(String memberId, String memberPassword, String memberName, String memberGender, int memberAge,
-                  String memberEmail, String memberCall, String memberAddress, String[] memberIntro, long memeberDisabled_id) {
-        this.memberId = memberId;
-        this.memberPassword = memberPassword;
-        this.memberName = memberName;
-        this.memberGender = memberGender;
-        this.memberAge = memberAge;
-        this.memberEmail = memberEmail;
-        this.memberCall = memberCall;
-        this.memberAddress = memberAddress;
-        this.memberIntro = memberIntro;
-        this.memeberDisabled_id = memeberDisabled_id;
+    public Member(String id, String memberPassword, String name, String gender, int age,
+                  String email, String call_info, String address, String intro, long disabled_id) {
+        this.id = id;
+        this.password = memberPassword;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.email = email;
+        this.call_info = call_info;
+        this.address = address;
+        this.intro = intro;
+        this.disabled_id = disabled_id;
     }
 
 

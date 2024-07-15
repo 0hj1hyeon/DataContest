@@ -74,7 +74,8 @@ public class RegisterActivity extends AppCompatActivity {
                         etEmail.getText().toString(),
                         etCall.getText().toString(),
                         etAddress.getText().toString(),
-                        getTextAsLines(etIntro),
+                        //getTextAsLines(etIntro),
+                        etIntro.getText().toString(),
                         isDis);
 
                 registerUser(member);
