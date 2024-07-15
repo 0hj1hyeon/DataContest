@@ -1,7 +1,7 @@
 package com.example.model;
 
 public class Member {
-    private String id;
+    private String accountId;
     private String password;
     private String name;
     private String gender;
@@ -12,14 +12,14 @@ public class Member {
     private String intro;
     private long disabled_id;
 
-    public Member(String id, String memberPassword) {
-        this.id = id;
+    public Member(String accountId, String memberPassword) {
+        this.accountId = accountId;
         this.password = memberPassword;
     }
 
-    public Member(String id, String memberPassword, String name, String gender, int age,
+    public Member(String accountId, String memberPassword, String name, String gender, int age,
                   String email, String call_info, String address, String intro, long disabled_id) {
-        this.id = id;
+        this.accountId = accountId;
         this.password = memberPassword;
         this.name = name;
         this.gender = gender;
