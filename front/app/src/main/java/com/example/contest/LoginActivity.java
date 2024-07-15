@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String id = etId.getText().toString();
                 String pw = etPw.getText().toString();
-                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 //loginUser(id,pw);
             }
