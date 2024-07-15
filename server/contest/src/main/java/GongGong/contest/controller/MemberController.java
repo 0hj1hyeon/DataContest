@@ -18,7 +18,7 @@ public class MemberController {
     @PostMapping("/join")
     public ResponseEntity<String> join(@RequestBody Member member) {
         
-        System.out.println("member.getId() = " + member.getId());
+        System.out.println("member.getAccountId() = " + member.getAccountId());
         System.out.println("member.getPassword() = " + member.getPassword());
      
         boolean is_join = memberService.joinMember(member);
@@ -38,7 +38,7 @@ public class MemberController {
         System.out.println("member.getPassword() = " + member.getPassword());
         
         
-        boolean isFind = memberService.findMember(member.getId());
+        boolean isFind = memberService.findMember(member);
         if (!isFind) {
             System.out.println("존재하지 않는 아이디");
             return new ResponseEntity<>("존재하지 않는 아이디", HttpStatus.BAD_REQUEST);

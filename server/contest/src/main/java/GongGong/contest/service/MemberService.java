@@ -21,9 +21,10 @@ public class MemberService {
          * 중복 id 있는지 검사해서 true false 반환
          */
         
-        Optional<Member> findMember = memberRepository.findById(member.getId());
-        //null 인지 검사
-        if (findMember.isPresent()) {
+        Member findMember = memberRepository.findByAccountId(member.getAccountId());
+        //값이 존재하면 true
+        if (findMember != null) {
+            
             return false;
         } 
         
@@ -33,7 +34,7 @@ public class MemberService {
     
     public boolean loginMember(Member member) {
         
-        Member foundMember = memberRepository.findById(member.getId()).orElse(null);
+        Member foundMember = memberRepository.findByAccountId(member.getAccountId());
         
         if (foundMember.getPassword().equals(member.getPassword())) {
             return true;
@@ -42,7 +43,7 @@ public class MemberService {
         return false;
     }
     
-    public boolean findMember(String memberId) {
-        return memberRepository.existsById(memberId);
+    public boolean findMember(Member member) {
+        return memberRepository.existsByAccountId(member.getAccountId());
     }
 }

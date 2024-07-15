@@ -13,10 +13,10 @@ public class Member {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long memberId;
+    Long id;
     
     @Column(length = 50)
-    String id;
+    String accountId;
     
     String password;
     

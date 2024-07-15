@@ -1,8 +1,6 @@
 package GongGong.contest.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +10,8 @@ import lombok.Setter;
 public class Disabled {
     
     @Id
-    Long disabled_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     
     @Column(length = 50)
     String disabled_type;
