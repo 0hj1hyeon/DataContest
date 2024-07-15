@@ -29,13 +29,13 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name="com.example.kakaomaptest.MapActivity" />
 
         <meta-data
             android:name="com.kakao.vectormap.APP_KEY"
-            android:value="d40a9ad57e85d84ae543f2987646610c"/>
-
+            android:value="d40a9ad57e85d84ae543f2987646610c" />
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E9F6FF"
     tools:context=".RegisterActivity">
 
     <ScrollView
@@ -36,9 +37,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/et_register_form"
                 android:layout_width="370dp"
-                android:layout_height="760dp"
+                android:layout_height="805dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/bg__"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_register" >
@@ -46,7 +46,7 @@
                 <EditText
                     android:id="@+id/et_register_id"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/input_"
                     android:hint="ID"
@@ -64,7 +64,7 @@
                 <EditText
                     android:id="@+id/et_register_pw"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="Password"
@@ -80,7 +80,7 @@
                 <EditText
                     android:id="@+id/et_register_name"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="이름"
@@ -111,14 +111,14 @@
                 <RadioGroup
                     android:id="@+id/et_register_gender"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:paddingLeft="15dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="@id/et_register_name"
                     app:layout_constraintStart_toStartOf="@id/et_register_name"
                     app:layout_constraintTop_toBottomOf="@id/et_register_name">
@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="성별 :     "
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.498"
@@ -156,11 +156,11 @@
                 <EditText
                     android:id="@+id/et_register_age"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="나이"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="16dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
@@ -172,11 +172,11 @@
                 <EditText
                     android:id="@+id/et_register_email"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="이메일"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:padding="16dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
@@ -188,7 +188,7 @@
                 <EditText
                     android:id="@+id/et_register_address"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="주소"
@@ -221,11 +221,11 @@
                 <CheckBox
                     android:id="@+id/et_register_disabled"
                     android:layout_width="100dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="장애 여부"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_register_intro" />
@@ -247,7 +247,7 @@
                 <EditText
                     android:id="@+id/et_register_call"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="전화번호"
@@ -267,6 +267,8 @@
                     android:layout_marginTop="25dp"
                     android:padding="16dp"
                     android:text="회원가입"
+                    android:backgroundTint="#3652AD"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_register_disabled" />
