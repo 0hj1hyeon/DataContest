@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -50,21 +51,19 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btn_register);
 
         Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080");
-        //Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080");
         apiService = retrofit.create(ApiService.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String gender;
                 long isDis;
-
-                if(rgGender.getCheckedRadioButtonId() == 0) gender = "남성";
-                else if (rgGender.getCheckedRadioButtonId() == 1) gender = "여성";
-                else gender = "기타";
+                String gender;
 
                 if(cbDis.isChecked()) isDis = 1;
                 else isDis = 0;
+
+                RadioButton radioButton = findViewById(rgGender.getCheckedRadioButtonId());
+                gender = radioButton.getText().toString();
 
                 member = new Member(
                         etId.getText().toString(),

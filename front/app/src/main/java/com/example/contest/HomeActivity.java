@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.kakaomaptest.MapActivity;
+
+import java.util.Map;
+
 import me.relex.circleindicator.CircleIndicator3;
 
 public class HomeActivity extends AppCompatActivity {
@@ -18,11 +22,14 @@ public class HomeActivity extends AppCompatActivity {
     private int num_page = 4;
     private CircleIndicator3 mIndicator;
 
+    private Button btnMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+        btnMap = findViewById(R.id.map_button);
 
         /**
          * 가로 슬라이드 뷰 Fragment
@@ -62,6 +69,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 mIndicator.animatePageSelected(position%num_page);
+            }
+        });
+
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, MapActivity.class);
+                startActivity(intent);
             }
         });
     }
