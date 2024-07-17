@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btn_register);
 
         Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080");
+        //Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080");
         apiService = retrofit.create(ApiService.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +92,18 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.d("RegisterActivity", "회원가입 성공");
                     Toast.makeText(RegisterActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
 
-                    // MainActivity로 이동
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if(cbDis.isChecked()) {
+                        // Register_DisabledActivity 이동
+                        Intent intent = new Intent(RegisterActivity.this, Register_DisabledActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        // MainActivity로 이동
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 } else {
                     String errorMessage = "회원가입 실패: " + response.message();
                     Log.e("RegisterActivity", errorMessage);
