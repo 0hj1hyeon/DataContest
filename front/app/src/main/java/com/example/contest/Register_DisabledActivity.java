@@ -48,13 +48,13 @@ public class Register_DisabledActivity extends AppCompatActivity {
                         etType.getText().toString(),
                         etSevere.getText().toString());
 
-                registerUser(disabled);
+                registerDisabled(disabled);
             }
         });
     }
 
-    private void registerUser(Disabled disabled) {
-        apiService.registerUser(disabled).enqueue(new Callback<Void>() {
+    private void registerDisabled(Disabled disabled) {
+        apiService.registerDisabled(disabled).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {

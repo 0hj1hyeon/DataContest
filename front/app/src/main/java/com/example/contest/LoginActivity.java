@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("LoginActivity", "로그인 성공");
                     Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                     // Map 이동
-                    Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

@@ -71,15 +71,16 @@
                 android:layout_marginTop="15dp"
                 android:text="근처 일자리 찾기"
                 android:textSize="16sp"
+                android:textColor="#3652AD"
+                android:textStyle="bold"
                 android:background="@drawable/home_button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bannerSlider"
                 app:layout_constraintWidth_default="spread"
                 android:paddingLeft="35dp"
-                android:drawableLeft="@drawable/map_icon"
-                android:drawablePadding="-20dp"
-                />
+                android:drawableLeft="@drawable/map_icon_1"
+                android:drawablePadding="-20dp" />
 
             <Button
                 android:id="@+id/profile_button"
@@ -87,6 +88,8 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="15dp"
                 android:text="프로필 작성 / 수정"
+                android:textColor="#3652AD"
+                android:textStyle="bold"
                 android:textSize="16sp"
                 android:background="@drawable/home_button"
                 app:layout_constraintStart_toStartOf="parent"
