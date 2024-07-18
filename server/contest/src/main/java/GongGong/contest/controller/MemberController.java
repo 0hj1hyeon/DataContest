@@ -1,7 +1,10 @@
 package GongGong.contest.controller;
 
+import GongGong.contest.domain.Disabled;
 import GongGong.contest.domain.Member;
+import GongGong.contest.domain.MemberDTO;
 import GongGong.contest.service.MemberService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +19,15 @@ public class MemberController {
     private final MemberService memberService;
     
     @PostMapping("/join")
-    public ResponseEntity<String> join(@RequestBody Member member) {
+    public ResponseEntity<String> join(@RequestBody MemberDTO memberDTO) {
+        
+        Member member = memberDTO.toMember();
+        Disabled disabled = memberDTO.toDisabled();
         
         System.out.println("member.getAccountId() = " + member.getAccountId());
         System.out.println("member.getPassword() = " + member.getPassword());
-     
-        boolean is_join = memberService.joinMember(member);
+        
+        boolean is_join = memberService.joinMember(member, disabled);
         
         if (!is_join) {
             System.out.println("아이디 중복");
@@ -33,12 +39,12 @@ public class MemberController {
     }
     
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Member member) {
-        System.out.println("member.getId() = " + member.getId());
+    public ResponseEntity<String> login(@RequestBody Member member,
+                                        HttpSession session) {
+        System.out.println("member.getAccountId() = " + member.getAccountId());
         System.out.println("member.getPassword() = " + member.getPassword());
         
-        
-        boolean isFind = memberService.findMember(member);
+        boolean isFind = memberService.existsMemberAccount(member);
         if (!isFind) {
             System.out.println("존재하지 않는 아이디");
             return new ResponseEntity<>("존재하지 않는 아이디", HttpStatus.BAD_REQUEST);
@@ -51,7 +57,8 @@ public class MemberController {
             return new ResponseEntity<>("비밀번호 불일치", HttpStatus.BAD_REQUEST);
         }
         
-        
+        session.setAttribute("session", member); 
+       
         System.out.println("로그인 성공");
         return new ResponseEntity<>("로그인 성공", HttpStatus.OK);
     }

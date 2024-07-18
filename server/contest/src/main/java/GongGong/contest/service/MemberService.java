@@ -1,10 +1,13 @@
 package GongGong.contest.service;
 
 
+import GongGong.contest.domain.Disabled;
 import GongGong.contest.domain.Member;
+import GongGong.contest.repository.DisabledRepository;
 import GongGong.contest.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -13,20 +16,22 @@ import java.util.Optional;
 public class MemberService {
     
     private final MemberRepository memberRepository;
+    private final DisabledRepository disabledRepository;
     
-    public boolean joinMember(Member member) {
+    public boolean joinMember(Member member, Disabled disabled) {
         
-        /**
-         * 회원가입 로직 작성
-         * 중복 id 있는지 검사해서 true false 반환
-         */
+        Optional<Member> optMember = memberRepository.findByAccountId(member.getAccountId());
         
-        Member findMember = memberRepository.findByAccountId(member.getAccountId());
-        //값이 존재하면 true
-        if (findMember != null) {
-            
+        if (optMember.isPresent()) {
+            //이미 존재하는 회원인 경우
             return false;
-        } 
+        }
+        
+        // disabled가 null이 아닌 경우 연관관계 설정 후 저장
+        if (disabled != null) {
+            disabledRepository.save(disabled);
+            member.setDisabled(disabled); // member와 disabled 간의 관계 설정
+        }
         
         memberRepository.save(member);
         return true;
@@ -34,7 +39,8 @@ public class MemberService {
     
     public boolean loginMember(Member member) {
         
-        Member foundMember = memberRepository.findByAccountId(member.getAccountId());
+        Optional<Member> optMember = memberRepository.findByAccountId(member.getAccountId());
+        Member foundMember = optMember.get();
         
         if (foundMember.getPassword().equals(member.getPassword())) {
             return true;
@@ -43,7 +49,17 @@ public class MemberService {
         return false;
     }
     
-    public boolean findMember(Member member) {
+    public boolean existsMemberAccount(Member member) {
         return memberRepository.existsByAccountId(member.getAccountId());
     }
+    
+    
+    /*@Transactional
+    public void updateDisabilityInfo(Member member, Disabled disabled) {
+        
+        Member findMember = memberRepository.findByAccountId(member.getAccountId()).get();
+        findMember.setDisabled(disabled);
+        memberRepository.save(findMember);
+        System.out.println("장애 정보 입력 성공");
+    }*/
 }
