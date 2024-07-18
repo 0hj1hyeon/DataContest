@@ -23,7 +23,6 @@ public class Location {
     @Column(precision = 10, scale = 7)
     BigDecimal longitude;
     
-    @Column(length = 50)
     String address;
     
     @Column(length = 50)
