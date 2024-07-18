@@ -1,6 +1,6 @@
 package com.example.model;
 
-public class Member {
+public class MemberDTO {
     private String accountId;
     private String password;
     private String name;
@@ -10,15 +10,16 @@ public class Member {
     private String call_info;
     private String address;
     private String intro;
-    private long disabled_id;
+    private String disabled_type;
+    private String is_severe;
 
-    public Member(String accountId, String memberPassword) {
+    public MemberDTO(String accountId, String memberPassword) {
         this.accountId = accountId;
         this.password = memberPassword;
     }
 
-    public Member(String accountId, String memberPassword, String name, String gender, int age,
-                  String email, String call_info, String address, String intro, long disabled_id) {
+    public MemberDTO(String accountId, String memberPassword, String name, String gender, int age,
+                  String email, String call_info, String address, String intro, String disabled_type, String is_severe) {
         this.accountId = accountId;
         this.password = memberPassword;
         this.name = name;
@@ -28,7 +29,8 @@ public class Member {
         this.call_info = call_info;
         this.address = address;
         this.intro = intro;
-        this.disabled_id = disabled_id;
+        this.disabled_type = disabled_type;
+        this.is_severe = is_severe;
     }
 
 

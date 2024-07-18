@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.model.Member;
+import com.example.model.MemberDTO;
 import com.example.retrofit.RetrofitClient;
 import com.example.service.ApiService;
 
@@ -42,38 +42,38 @@ public class AccountModifyActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String id = etId.getText().toString();
                 String pw = etPw.getText().toString();
-                registerUser(id, pw);
+                //registerUser(id, pw);
             }
         });
     }
 
-    private void registerUser(String id, String pw) {
-        Member member = new Member(id, pw);
-
-        apiService.registerUser(member).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Log.d("RegisterActivity", "회원가입 성공");
-                    Toast.makeText(AccountModifyActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-
-                    // MainActivity로 이동
-                    Intent intent = new Intent(AccountModifyActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    String errorMessage = "회원가입 실패: " + response.message();
-                    Log.e("RegisterActivity", errorMessage);
-                    Toast.makeText(AccountModifyActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                String errorMessage = "회원가입 실패: " + t.getMessage();
-                Log.e("RegisterActivity", errorMessage, t);
-                Toast.makeText(AccountModifyActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void registerUser(String id, String pw) {
+//        Member member = new Member(id, pw);
+//
+//        apiService.registerUser(member).enqueue(new Callback<Void>() {
+//            @Override
+//            public void onResponse(Call<Void> call, Response<Void> response) {
+//                if (response.isSuccessful()) {
+//                    Log.d("RegisterActivity", "회원가입 성공");
+//                    Toast.makeText(AccountModifyActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+//
+//                    // MainActivity로 이동
+//                    Intent intent = new Intent(AccountModifyActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                } else {
+//                    String errorMessage = "회원가입 실패: " + response.message();
+//                    Log.e("RegisterActivity", errorMessage);
+//                    Toast.makeText(AccountModifyActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Void> call, Throwable t) {
+//                String errorMessage = "회원가입 실패: " + t.getMessage();
+//                Log.e("RegisterActivity", errorMessage, t);
+//                Toast.makeText(AccountModifyActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }
