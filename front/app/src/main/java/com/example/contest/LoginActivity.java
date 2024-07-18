@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kakaomaptest.MapActivity;
-import com.example.model.Member;
+import com.example.model.MemberDTO;
 import com.example.retrofit.RetrofitClient;
 import com.example.service.ApiService;
 
@@ -35,7 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         etPw = findViewById(R.id.et_pw);
         btnLogin = findViewById(R.id.btn_login);
 
-        Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080");
+        Retrofit retrofit = RetrofitClient.getClient("https://8308-220-69-208-119.ngrok-free.app");
+        //Retrofit retrofit = RetrofitClient.getClient("http://10.0.2.2:8080");
         apiService = retrofit.create(ApiService.class);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser(String id, String pw){
-        Member member = new Member(id, pw);
+        MemberDTO member = new MemberDTO(id, pw);
 
         apiService.loginUser(member).enqueue(new Callback<Void>() {
             @Override

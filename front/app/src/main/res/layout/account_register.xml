@@ -37,7 +37,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/et_register_form"
                 android:layout_width="370dp"
-                android:layout_height="805dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="이름"
-                    android:inputType="text"
+                    android:inputType="textPersonName"
                     android:padding="16dp"
                     android:textAllCaps="false"
                     android:textColor="#000000"
@@ -186,13 +186,29 @@
                     app:layout_constraintTop_toBottomOf="@+id/et_register_age" />
 
                 <EditText
+                    android:id="@+id/et_register_call"
+                    android:layout_width="350dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/input_"
+                    android:hint="전화번호"
+                    android:inputType="phone"
+                    android:padding="16dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/et_register_email"
+                    app:layout_constraintStart_toStartOf="@+id/et_register_email"
+                    app:layout_constraintTop_toBottomOf="@+id/et_register_email" />
+
+                <EditText
                     android:id="@+id/et_register_address"
                     android:layout_width="350dp"
                     android:layout_height="55dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/input_"
                     android:hint="주소"
-                    android:inputType="text"
+                    android:inputType="textPostalAddress"
                     android:padding="16dp"
                     android:textColor="#000000"
                     android:textColorHint="#000000"
@@ -230,35 +246,62 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/et_register_intro" />
 
-                <!--        <EditText-->
-                <!--            android:id="@+id/et_register_disabled"-->
-                <!--            android:layout_width="350dp"-->
-                <!--            android:layout_height="50dp"-->
-                <!--            android:layout_marginTop="7dp"-->
-                <!--            android:background="@drawable/input_"-->
-                <!--            android:hint="장애"-->
-                <!--            android:inputType="text"-->
-                <!--            android:padding="16dp"-->
-                <!--            android:textSize="16sp"-->
-                <!--            app:layout_constraintEnd_toEndOf="parent"-->
-                <!--            app:layout_constraintStart_toStartOf="parent"-->
-                <!--            app:layout_constraintTop_toBottomOf="@+id/et_register_address" />-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/et_register_disabled_form"
+                    android:layout_width="370dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_register_disabled"
+                    app:layout_constraintVertical_bias="0.55">
 
-                <EditText
-                    android:id="@+id/et_register_call"
-                    android:layout_width="350dp"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/input_"
-                    android:hint="전화번호"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#000000"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="@+id/et_register_email"
-                    app:layout_constraintStart_toStartOf="@+id/et_register_email"
-                    app:layout_constraintTop_toBottomOf="@+id/et_register_email" />
+
+                    <Spinner
+                        android:id="@+id/et_register_type"
+                        android:layout_width="350dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/input_"
+                        android:padding="16dp"
+                        android:textAllCaps="false"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <RadioGroup
+                        android:id="@+id/et_register_severe"
+                        android:layout_width="350dp"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#000000"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@id/et_register_type"
+                        app:layout_constraintStart_toStartOf="@id/et_register_type"
+                        app:layout_constraintTop_toBottomOf="@id/et_register_type">
+
+                        <RadioButton
+                            android:id="@+id/et_register_isServere1"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="중증" />
+
+                        <RadioButton
+                            android:id="@+id/et_register_isServere2"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="경증" />
+                    </RadioGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Button
                     android:id="@+id/btn_register"
@@ -271,7 +314,7 @@
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_register_disabled" />
+                    app:layout_constraintTop_toBottomOf="@+id/et_register_disabled_form" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
