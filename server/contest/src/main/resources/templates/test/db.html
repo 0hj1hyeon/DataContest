@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1px">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Account ID</th>
+        <th>Password</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Call Info</th>
+        <th>Address</th>
+        <th>Intro</th>
+        <th>Disabled Info</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="member : ${members}">
+        <td th:text="${member.id}">1</td>
+        <td th:text="${member.accountId}">accountId</td>
+        <td th:text="${member.password}">password</td>
+        <td th:text="${member.name}">John Doe</td>
+        <td th:text="${member.gender}">Male</td>
+        <td th:text="${member.age}">25</td>
+        <td th:text="${member.email}">john.doe@example.com</td>
+        <td th:text="${member.call_info}">123-456-7890</td>
+        <td th:text="${member.address}">123 Main St</td>
+        <td th:text="${member.intro}">Hello, I'm John!</td>
+        <td th:text="${member.disabled}">Disabled</td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<table border="1px">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>disabled_type</th>
+        <th>is_severe</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="disabled : ${disables}">
+        <td th:text="${disabled.id}">1</td>
+        <td th:text="${disabled.disabled_type}">disabled_type</td>
+        <td th:text="${disabled.is_severe}">is_severe</td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

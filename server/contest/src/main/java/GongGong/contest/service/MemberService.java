@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,6 +53,16 @@ public class MemberService {
     public boolean existsMemberAccount(Member member) {
         return memberRepository.existsByAccountId(member.getAccountId());
     }
+    
+    public List<Member> allMembers() {
+        return memberRepository.findAll();
+    }
+    
+    public List<Disabled> allDisableds() {
+        return disabledRepository.findAll();
+    }
+    
+    
     
     
     /*@Transactional
