@@ -5,14 +5,14 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#d1d1d1">
+    android:background="#FE7A36">
 
     <TextView
         android:id="@+id/textView_login"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:text="테스트"
-        android:textColor="#000000"
+        android:text="모두의 일자리\n에브리잡"
+        android:textColor="@color/white"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold" />

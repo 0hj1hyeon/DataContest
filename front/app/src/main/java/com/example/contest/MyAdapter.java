@@ -27,7 +27,7 @@ public class MyAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2000;
+        return 500;
     }
 
     public int getRealPosition(int position) { return position % mCount; }

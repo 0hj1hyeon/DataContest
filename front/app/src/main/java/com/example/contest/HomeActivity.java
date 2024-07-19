@@ -19,10 +19,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 4;
+    private int num_page = 2;
     private CircleIndicator3 mIndicator;
 
-    private Button btnMap;
+    private Button btnMap, btnProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.home);
 
         btnMap = findViewById(R.id.map_button);
+        btnProfile = findViewById(R.id.profile_button);
 
         /**
          * 가로 슬라이드 뷰 Fragment
@@ -53,8 +54,8 @@ public class HomeActivity extends AppCompatActivity {
          * 좌 우로 슬라이딩 할 수 있게 함. 거의 무한대로
          */
 
-        mPager.setCurrentItem(1000); //시작 지점
-        mPager.setOffscreenPageLimit(4); //최대 이미지 수
+        mPager.setCurrentItem(250); //시작 지점
+        mPager.setOffscreenPageLimit(2); //최대 이미지 수
 
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -77,6 +78,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 startActivity(intent);
             }
         });
