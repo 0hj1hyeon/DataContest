@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#d1d1d1">
+    android:background="#E9F6FF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_"
@@ -30,7 +30,7 @@
             android:id="@+id/textView_test2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="일자리 구하러가기 >>"
+            android:text="일자리 구하러가기 →"
             app:layout_constraintTop_toBottomOf="@id/imageView1"
             android:textColor="#000000"
             android:gravity="center"
