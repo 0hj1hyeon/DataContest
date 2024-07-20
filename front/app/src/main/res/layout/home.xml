@@ -171,10 +171,13 @@
 
                         <TextView
                             android:id="@+id/grid1_name"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="test_회사명 1"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:text="주식회사\n호브(HOVE)"
                             android:textColor="@color/black"
+                            android:breakStrategy="balanced"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -184,23 +187,37 @@
                             app:layout_constraintVertical_bias="0.3" />
 
                         <TextView
+                            android:id="@+id/grid1_pay_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:text="시급"
+                            android:textStyle="bold"
+                            android:textColor="#3652AD"
+                            android:textSize="15sp"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid1_name"
+                            app:layout_constraintTop_toBottomOf="@+id/grid1_name" />
+                        <TextView
                             android:id="@+id/grid1_pay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_페이"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="9,860원"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid1_name"
+                            app:layout_constraintLeft_toRightOf="@+id/grid1_pay_type"
                             app:layout_constraintTop_toBottomOf="@+id/grid1_name" />
 
                         <TextView
                             android:id="@+id/grid1_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_회사주소"
+                            android:layout_marginRight="20dp"
+                            android:text="종로구"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid1_name"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid1_name"
                             app:layout_constraintTop_toBottomOf="@+id/grid1_pay" />
 
 
@@ -216,9 +233,12 @@
 
                         <TextView
                             android:id="@+id/grid2_name"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="test_회사명 2"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:text="서울특별시강서구청"
+                            android:breakStrategy="balanced"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -229,23 +249,37 @@
                             app:layout_constraintVertical_bias="0.3" />
 
                         <TextView
+                            android:id="@+id/grid2_pay_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:text="월급"
+                            android:textStyle="bold"
+                            android:textColor="#FE7A36"
+                            android:textSize="15sp"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid2_name"
+                            app:layout_constraintTop_toBottomOf="@+id/grid2_name" />
+                        <TextView
                             android:id="@+id/grid2_pay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_페이"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="2,060,740원"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid2_name"
+                            app:layout_constraintLeft_toRightOf="@+id/grid2_pay_type"
                             app:layout_constraintTop_toBottomOf="@+id/grid2_name" />
 
                         <TextView
                             android:id="@+id/grid2_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_회사주소"
+                            android:layout_marginRight="20dp"
+                            android:text="강서구"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid2_name"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid2_name"
                             app:layout_constraintTop_toBottomOf="@+id/grid2_pay" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -261,9 +295,12 @@
 
                         <TextView
                             android:id="@+id/grid3_name"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="test_회사명 3"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:text="관악구청"
+                            android:breakStrategy="balanced"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -274,23 +311,37 @@
                             app:layout_constraintVertical_bias="0.3" />
 
                         <TextView
+                            android:id="@+id/grid3_pay_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:text="월급"
+                            android:textStyle="bold"
+                            android:textColor="#FE7A36"
+                            android:textSize="15sp"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid3_name"
+                            app:layout_constraintTop_toBottomOf="@+id/grid3_name" />
+                        <TextView
                             android:id="@+id/grid3_pay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_페이"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="2,060,740원"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid3_name"
+                            app:layout_constraintLeft_toRightOf="@+id/grid3_pay_type"
                             app:layout_constraintTop_toBottomOf="@+id/grid3_name" />
 
                         <TextView
                             android:id="@+id/grid3_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_회사주소"
+                            android:layout_marginRight="20dp"
+                            android:text="관악구"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid3_name"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid3_name"
                             app:layout_constraintTop_toBottomOf="@+id/grid3_pay" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -305,9 +356,12 @@
 
                         <TextView
                             android:id="@+id/grid4_name"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="test_회사명 4"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:text="현대해상화재보험(주)"
+                            android:breakStrategy="balanced"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -318,23 +372,37 @@
                             app:layout_constraintVertical_bias="0.3" />
 
                         <TextView
+                            android:id="@+id/grid4_pay_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:text="월급"
+                            android:textStyle="bold"
+                            android:textColor="#FE7A36"
+                            android:textSize="15sp"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid4_name"
+                            app:layout_constraintTop_toBottomOf="@+id/grid4_name" />
+                        <TextView
                             android:id="@+id/grid4_pay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_페이"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:text="2,260,000원"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid4_name"
+                            app:layout_constraintLeft_toRightOf="@+id/grid4_pay_type"
                             app:layout_constraintTop_toBottomOf="@+id/grid4_name" />
 
                         <TextView
                             android:id="@+id/grid4_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="test_회사주소"
+                            android:layout_marginRight="20dp"
+                            android:text="종로구"
                             android:textColor="@color/black"
                             android:textSize="15sp"
-                            app:layout_constraintStart_toStartOf="@+id/grid4_name"
+                            app:layout_constraintLeft_toLeftOf="@+id/grid4_name"
                             app:layout_constraintTop_toBottomOf="@+id/grid4_pay" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

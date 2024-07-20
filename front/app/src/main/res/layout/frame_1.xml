@@ -11,7 +11,7 @@
         android:id="@+id/textView_login"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:text="모두의 일자리\n에브리잡"
+        android:text="에브리잡에서\n제공하는 광고입니다."
         android:textColor="@color/white"
         android:gravity="center"
         android:textSize="24sp"
