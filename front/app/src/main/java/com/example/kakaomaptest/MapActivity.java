@@ -6,13 +6,10 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.health.connect.datatypes.ExerciseRoute;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -24,21 +21,16 @@ import androidx.core.content.ContextCompat;
 
 import com.example.contest.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
 import com.kakao.vectormap.KakaoMap;
 import com.kakao.vectormap.KakaoMapReadyCallback;
 import com.kakao.vectormap.LatLng;
-import com.kakao.vectormap.MapLifeCycleCallback;
 import com.kakao.vectormap.MapView;
 import com.kakao.vectormap.label.Label;
 import com.kakao.vectormap.label.LabelLayer;
 import com.kakao.vectormap.label.LabelOptions;
 import com.kakao.vectormap.label.LabelStyle;
-import com.kakao.vectormap.label.TrackingManager;
 
 public class MapActivity extends AppCompatActivity {
     private final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
@@ -48,9 +40,7 @@ public class MapActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private MapView mapView;
     private Label centerLabel;
-    private boolean requestingLocationUpdates = false;
-    private LocationRequest locationRequest;
-    private LocationCallback locationCallback;
+
     private KakaoMapReadyCallback readyCallback = new KakaoMapReadyCallback() {
         @Override
         public void onMapReady(@NonNull KakaoMap kakaoMap) {
@@ -59,9 +49,6 @@ public class MapActivity extends AppCompatActivity {
             centerLabel = layer.addLabel(LabelOptions.from("centerLabel", startPosition)
                     .setStyles(LabelStyle.from(R.drawable.red_dot_marker).setAnchorPoint(0.5f, 0.5f))
                     .setRank(1));
-            TrackingManager trackingManager = kakaoMap.getTrackingManager();
-            trackingManager.startTracking(centerLabel);
-            startLocationUpdates();
         }
 
         @NonNull
@@ -87,41 +74,27 @@ public class MapActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2000L).build();
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(@NonNull LocationResult locationResult) {
-                for (Location location : locationResult.getLocations()) {
-                    centerLabel.moveTo(LatLng.from(location.getLatitude(), location.getLongitude()));
-                }
-            }
-        };
 
         if (ContextCompat.checkSelfPermission(this, locationPermissions[0]) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, locationPermissions[1]) == PackageManager.PERMISSION_GRANTED) {
             getStartLocation();
         } else {
             ActivityCompat.requestPermissions(this, locationPermissions, LOCATION_PERMISSION_REQUEST_CODE);
         }
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (requestingLocationUpdates) {
-            startLocationUpdates();
+        if (startPosition == null) {
+            getStartLocation();
+        } else {
+            mapView.start(readyCallback);
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        fusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
     @SuppressLint("MissingPermission")
     private void getStartLocation() {
-        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY,null)
+        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, null)
                 .addOnSuccessListener(this, location -> {
                     if (location != null) {
                         startPosition = LatLng.from(location.getLatitude(), location.getLongitude());
@@ -129,13 +102,6 @@ public class MapActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    @SuppressLint("MissingPermission")
-    private void startLocationUpdates() {
-        requestingLocationUpdates = true;
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
-    }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
