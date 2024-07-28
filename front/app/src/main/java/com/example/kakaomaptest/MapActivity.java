@@ -6,7 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
+import com.example.model.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -20,6 +20,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.contest.R;
+import com.example.retrofit.RetrofitClient;
+import com.example.service.ApiService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
@@ -32,6 +34,13 @@ import com.kakao.vectormap.label.LabelLayer;
 import com.kakao.vectormap.label.LabelOptions;
 import com.kakao.vectormap.label.LabelStyle;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
 public class MapActivity extends AppCompatActivity {
     private final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
     private final String[] locationPermissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -40,6 +49,7 @@ public class MapActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private MapView mapView;
     private Label centerLabel;
+    private ApiService apiService;
 
     private KakaoMapReadyCallback readyCallback = new KakaoMapReadyCallback() {
         @Override
@@ -49,6 +59,7 @@ public class MapActivity extends AppCompatActivity {
             centerLabel = layer.addLabel(LabelOptions.from("centerLabel", startPosition)
                     .setStyles(LabelStyle.from(R.drawable.red_dot_marker).setAnchorPoint(0.5f, 0.5f))
                     .setRank(1));
+            fetchLocationData(kakaoMap);
         }
 
         @NonNull
@@ -74,6 +85,9 @@ public class MapActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        Retrofit retrofit = RetrofitClient.getClient("https://8308-220-69-208-119.ngrok-free.app"); // 실제 서버 URL로 변경
+        apiService = retrofit.create(ApiService.class);
 
         if (ContextCompat.checkSelfPermission(this, locationPermissions[0]) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, locationPermissions[1]) == PackageManager.PERMISSION_GRANTED) {
             getStartLocation();
@@ -101,6 +115,38 @@ public class MapActivity extends AppCompatActivity {
                         mapView.start(readyCallback);
                     }
                 });
+    }
+
+    private void fetchLocationData(KakaoMap kakaoMap) {
+        apiService.getLocations().enqueue(new Callback<List<Location>>() {
+            @Override
+            public void onResponse(Call<List<Location>> call, Response<List<Location>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Location> locations = response.body();
+
+                    // 받아온 위치 데이터를 이용해 마커 추가
+                    for (Location location : locations) {
+                        addMarker(kakaoMap, location.getLatitude(), location.getLongitude());
+                    }
+                } else {
+                    // HTTP 응답이 성공적이지 않은 경우 처리
+                    System.err.println("응답이 성공적이지 않습니다: " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Location>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void addMarker(KakaoMap kakaoMap, double latitude, double longitude) {
+        LatLng position = LatLng.from(latitude, longitude);
+        LabelLayer layer = kakaoMap.getLabelManager().getLayer();
+        layer.addLabel(LabelOptions.from("", position)
+                .setStyles(LabelStyle.from(R.drawable.red_dot_marker).setAnchorPoint(0.5f, 0.5f))
+                .setRank(1));
     }
 
     @Override
